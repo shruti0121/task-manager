@@ -53,7 +53,7 @@ AUTH APIs
 
 // Register
 
-app.post("/api/register",
+app.post("/api/auth/register",
 async(req,res)=>{
 
 
@@ -90,7 +90,7 @@ async(req,res)=>{
 
 // Login
 
-app.post("/api/login",
+app.post("/api/auth/login",
 async(req,res)=>{
 
 
@@ -99,7 +99,13 @@ async(req,res)=>{
         password
     } = req.body;
 
+ console.log("LOGIN REQUEST:", username, password);
 
+
+
+ const [allUsers] = await db.query("SELECT * FROM users");
+
+    console.log("ALL USERS:", allUsers);
 
     const [rows] =
     await db.query(
@@ -113,7 +119,7 @@ async(req,res)=>{
 
     );
 
-
+console.log("DATABASE RESULT:", rows);
 
     if(rows.length===0){
 
