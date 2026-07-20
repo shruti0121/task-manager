@@ -137,7 +137,7 @@ console.log("DATABASE RESULT:", rows);
     req.session.userId =
     rows[0].id;
 
-
+console.log("SESSION AFTER LOGIN:", req.session);
 
     res.json({
 
@@ -153,7 +153,17 @@ console.log("DATABASE RESULT:", rows);
 
 
 
+app.post("/api/auth/logout",(req,res)=>{
 
+    req.session.destroy(()=>{
+
+        res.json({
+            message:"Logged out"
+        });
+
+    });
+
+});
 
 /*
 ========================
@@ -197,15 +207,15 @@ async(req,res)=>{
 app.post("/api/tasks",
 async(req,res)=>{
 
+    console.log("SESSION:", req.session);
 
-    const userId =
-    req.session.userId;
+    console.log("BODY:", req.body);
 
 
+    const userId = req.session.userId;
 
-    const title =
-    req.body.title;
 
+    const title = req.body.title;
 
 
     await db.query(
@@ -227,10 +237,7 @@ async(req,res)=>{
     });
 
 
-
 });
-
-
 
 
 
