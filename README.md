@@ -10,7 +10,7 @@ The solution leverages Amazon EC2, Application Load Balancer, Auto Scaling Group
 
 ## Architecture Overview
 
-![Architecture Diagram](https://github.com/aws-samples/aws-three-tier-web-architecture-workshop/blob/main/application-code/web-tier/src/assets/3TierArch.png)
+![Architecture Diagram](architecture.png)
 
 The architecture consists of three logical layers. Incoming client requests are routed through an internet-facing Application Load Balancer to EC2 instances deployed in private subnets. The application communicates with an Amazon RDS MySQL database located in private subnets, ensuring that only the application servers have access to the database. Auto Scaling Groups and Multi-AZ deployment improve availability and scalability, while NAT Gateways provide secure outbound internet access for private instances.
 
